@@ -6,9 +6,9 @@
           <h1>My app name</h1>
 
           <div class="topics-list">
-            <topic-tag>Hello</topic-tag>
-            <topic-tag>Hello</topic-tag>
-            <topic-tag>Hello</topic-tag>
+            <topic-tag class="topic-tag">Hello</topic-tag>
+            <topic-tag class="topic-tag">Hello</topic-tag>
+            <topic-tag class="topic-tag">Hello</topic-tag>
           </div>
 
           <p>Some short blurb here</p>
@@ -39,19 +39,39 @@
         </div>
       </div>
 
-      <div>
+      <div class="content">
         <div class="tabs">
           <ul>
-            <li class="is-active"><a>Setup</a></li>
-            <li><a>Usage</a></li>
-            <li><a>More info</a></li>
-            <li><a>Updates</a></li>
-            <li><a>Configuration</a></li>
+            <li v-for="(tab, index) in tabs" :class="{ 'is-active': activeTabIndex === index}" :key="tab">
+              <a @click="onClickTab(index)">
+                {{ tab }}
+              </a>
+            </li>
           </ul>
         </div>
 
-        <div>
-          Hello hello hello
+        <div v-if="isConfigurationTabActive">
+          <p>Configuration values required for this app</p>
+
+          <div>
+            <table class="table config-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Reference</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <td>API KEY</td>
+                <td>API key for Third party API</td>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div v-else-if="Boolean(this.tabs[this.activeTabIndex])">
+          <p>Hello Hello</p>
         </div>
       </div>
 
@@ -99,12 +119,28 @@ import ServiceSummary from '../components/ServiceSummary';
 import AppSummary from '../components/AppSummary';
 import TopicTag from '../components/TopicTag';
 
+const CONFIGURATION_TAB = 'Configuration';
+
 export default {
   props: ['alias', 'owner', 'repo'],
   data() {
     return {
-      app: {},
+      activeTabIndex: 0,
     };
+  },
+  computed: {
+    isConfigurationTabActive() {
+      return this.tabs.indexOf(CONFIGURATION_TAB) === this.activeTabIndex;
+    },
+    tabs() {
+      // Computed because the goal is to derive these topics from Markdown
+      return ['Setup', 'Usage', 'More info', 'Updates'].concat(CONFIGURATION_TAB);
+    },
+  },
+  methods: {
+    onClickTab(tabIndex) {
+      this.activeTabIndex = tabIndex;
+    },
   },
   components: {
     ServiceSummary,
@@ -134,5 +170,17 @@ export default {
 
 .section {
   padding: 20px 0;
+}
+
+.config-table th {
+  font-weight: normal;
+}
+
+.content {
+  padding-bottom: 80px;
+}
+
+.topic-tag {
+  margin: 0 4px;
 }
 </style>

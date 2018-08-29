@@ -11,7 +11,7 @@
         </div>
 
         <div class="level-item details">
-          <p class="profile-name">@paulxuca</p>
+          <h5 class="profile-name">@paulxuca</h5>
           <p class="app-blurb">{{ description }}</p>
         </div>
       </div>
@@ -54,6 +54,8 @@ export default {
   text-align: center;
   font-size: 20px;
   font-weight: normal;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .footer {
@@ -70,14 +72,12 @@ export default {
 }
 
 .profile-name {
-  font-size: 18px;
-  line-height: initial;
   margin-bottom: 4px;
 }
 
 .app-blurb {
   line-height: initial;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .details {
