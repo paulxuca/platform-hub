@@ -48,14 +48,16 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../node_modules/asyncy-ui-components/dist/css/global.css";
-@import "../../node_modules/bulma/sass/utilities/_all";
-@import "../../node_modules/bulma/sass/grid/columns";
-@import "../../node_modules/bulma/sass/grid/tiles";
-@import "../../node_modules/bulma/sass/components/level";
-@import "../../node_modules/bulma/sass/components/media";
-@import "../../node_modules/bulma/sass/elements/tag";
-@import "../../node_modules/bulma/sass/elements/table";
+@import '../../node_modules/asyncy-ui-components/dist/css/global.css';
+@import '../../node_modules/bulma/sass/utilities/_all';
+@import '../../node_modules/bulma/sass/grid/columns';
+@import '../../node_modules/bulma/sass/grid/tiles';
+@import '../../node_modules/bulma/sass/components/level';
+@import '../../node_modules/bulma/sass/components/media';
+@import '../../node_modules/bulma/sass/elements/tag';
+@import '../../node_modules/bulma/sass/elements/table';
+@import '../../node_modules/bulma/sass/components/tabs';
+@import '../../node_modules/bulma/sass/components/card';
 </style>
 
 <style lang="styl">

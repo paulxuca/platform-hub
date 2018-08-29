@@ -6,6 +6,7 @@ import Service from '../views/Service';
 import Tags from '../views/Tags';
 import Faq from '../views/Faq';
 import PageNotFound from '../views/PageNotFound';
+import App from '../views/App';
 
 Vue.use(Router);
 
@@ -57,6 +58,25 @@ export default new Router({
         return {
           owner: route.params.owner,
           repo: route.params.repo,
+        };
+      },
+    },
+    {
+      path: '/app/:owner/:repo',
+      component: App,
+      props({ params }) {
+        return {
+          owner: params.owner,
+          repo: params.repo,
+        };
+      },
+    },
+    {
+      path: '/app/:alias',
+      component: App,
+      props({ params }) {
+        return {
+          alias: params.alias,
         };
       },
     },
